@@ -1,0 +1,24 @@
+version: '3.8'
+services: 
+  mangodb:
+    image: mongo:latest
+    posts:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:data/db
+express:
+    build: ./server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/neuronerds
+ballerina-robot-data:
+    build: ./ballerina-services/robot-data
+    ports:
+      - "9090:9090"
+    depends_on:
+      - mongodb
+volumes:
+  mongodb_data:
