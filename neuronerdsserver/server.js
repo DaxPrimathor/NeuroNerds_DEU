@@ -1,15 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+
+const authRoutes = require('./routes/auth');
+
+
 require('dotenv').config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Routes
+app.use('/auth', authRoutes);
+
+app.get('/', (req, res) => res.send('Robotic Social Platform API'));
+
+
 // Fix MongoDB connection string and options
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/neuronerds', {
-  useNewUrlParser: true, // Note: This is deprecated in newer MongoDB versions but included for compatibility
+  useNewUrlParser: true, 
   useUnifiedTopology: true
 })
   .then(() => console.log('MongoDB connected'))
