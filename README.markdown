@@ -1,4 +1,4 @@
-# Robotic Person Social Media Platform for MechSys DEU
+# Robotic Persons Social Media Platform | MechSys DEU
 
 A social media platform for robotics enthusiasts, built with the MERN stack and Ballerina, designed to foster collaboration and innovation in the robotics community. The UI is structured as a centralized mind map (root-to-leaf) for intuitive navigation, tailored for MechSys DEU, a leader in robot innovation and manufacturing.
 
