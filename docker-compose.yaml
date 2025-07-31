@@ -1,20 +1,20 @@
-version: '3.8'
+
 services: 
   mangodb:
     image: mongo:latest
-    posts:
+    ports:
       - "27017:27017"
     volumes:
       - mongodb_data:data/db
-express:
-    build: ./server
+  express:
+    build: ./neuronerdsserver
     ports:
       - "5000:5000"
     depends_on:
       - mongodb
     environment:
-      - MONGO_URI=mongodb://mongodb:27017/neuronerds
-ballerina-robot-data:
+      - MONGO_URI=mongodb://mongodb:27017/NeuroNerdsDEU_db
+  ballerina-robot-data:
     build: ./ballerina-services/robot-data
     ports:
       - "9090:9090"
