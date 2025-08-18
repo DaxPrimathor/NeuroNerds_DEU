@@ -1,9 +1,25 @@
 import React, { useState } from 'react'
 
-const Login = () => {
+const Login = ({ onLoginSuccess }) => {
 
     const[isLoginMode,setIsLoginMode] = useState(true)
+
+     const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Optional: Add real login logic here
+
+    // When login is successful, call parent to show Dashboard
+    onLoginSuccess();
+  };
+
   return (
+    <div className='grid w-[100%] h-screen place-items-center bg-cover bg-center bg-repeat'
+    style={{ backgroundImage: "url('/bg1.jpeg')" }}>
+      <p className='text-cyan-500 text-center text-xl'>NeuroNerds</p>
+      <p className='text-white text-center font-medium'>The Future Of Robot Social Connection</p>
+    
+
     <div className='w-[430px] bg-black p-8 rounded-2xl shadow-lg border-5 border-cyan-500'>
         {/* header */}
         <div className='flex justify-center mb-4 text-white'>
@@ -20,13 +36,12 @@ const Login = () => {
              {/* Sliding */}
             <div className={`absolute top-0 h-full  w-1/2 rounded-full bg-gradient-to-r from-blue-700 via-cyan-600 to-cyan-200 ${isLoginMode ? 'left-0' : 'left-1/2'}`}>
             </div>
+            
         </div>
 
 
-       
-
         {/*Form Section */}
-        <form className='space-y-4'>
+        <form className='space-y-4' onSubmit={handleSubmit}>
             {
              !isLoginMode && (
                 <input type="text" placeholder='Username' required className='w-full p-3 border-b-2 border-gray-300 outline-none focus:border-cyan-500 placeholder-gray-400 text-white' />
@@ -54,12 +69,14 @@ const Login = () => {
              )
               }
 
-              <button className='w-full p-3 bg-cyan-500 text-white rounded-full text-lg font-medium hover-opacity-90 transition'>
+              <button className='w-full p-3 bg-cyan-500 text-white rounded-full text-lg font-medium hover-opacity-90 transition' type="submit">
                 {isLoginMode ? "Initialize Connection" : "Initialize Network Registration"}
               </button>
 
         </form>
-    
+        <br></br>
+    <div className='font-small text-center text-white'>NeuroNerds v0.0.2 - Connecting the future</div>
+    </div>
     </div>
   )
 }
